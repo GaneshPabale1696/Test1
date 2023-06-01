@@ -6,6 +6,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DatePickerDemo {
 
@@ -18,8 +21,12 @@ public class DatePickerDemo {
 		String expectedMonth = "July";
 		String expectedYear = "2022";
 				//launch chrome browser
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\prach\\Desktop\\DemoTestMavenProject\\Test1\\Drivers\\chromedriver.exe");
-		WebDriver driver = new ChromeDriver();
+		//System.setProperty("webdriver.chrome.driver", "C:\\Users\\prach\\Desktop\\DemoTestMavenProject\\Test1\\Drivers\\chromedriver.exe");
+		WebDriverManager.chromedriver().setup();
+
+		ChromeOptions ops = new ChromeOptions();
+		ops.addArguments("--remote-allow-origins=*");
+		WebDriver driver = new ChromeDriver(ops); // launch chrome
 
 		//maximise browser
 		driver.manage().window().maximize();

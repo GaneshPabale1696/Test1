@@ -10,6 +10,9 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class CaptureScreenShot {
 
@@ -18,9 +21,12 @@ public class CaptureScreenShot {
 
 		//Launch chrome browser
 
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\prach\\Desktop\\DemoTestMavenProject\\Test1\\Drivers\\chromedriver.exe");
-		WebDriver driver = new ChromeDriver();
+		//System.setProperty("webdriver.chrome.driver", "C:\\Users\\prach\\Desktop\\DemoTestMavenProject\\Test1\\Drivers\\chromedriver.exe");
+		WebDriverManager.chromedriver().setup();
 
+		ChromeOptions ops = new ChromeOptions();
+		ops.addArguments("--remote-allow-origins=*");
+		WebDriver driver = new ChromeDriver(ops); // launch chrome
 		//maximise browser
 		driver.manage().window().maximize();
 
@@ -50,7 +56,7 @@ public class CaptureScreenShot {
 		//step2: call getScreenshotAs method to create image file
 		File src = section.getScreenshotAs(OutputType.FILE);
 
-		File dest = new File("C:\\Users\\prach\\Desktop\\DemoTestMavenProject\\Test1\\Screenshots\\doubleclickme.png");
+		File dest = new File("Test1\\Screenshots\\doubleclickme.png");
 
 
 		//step3: copy image file to destination
